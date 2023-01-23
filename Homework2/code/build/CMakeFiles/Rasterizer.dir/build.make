@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.21.3_1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code"
+CMAKE_SOURCE_DIR = /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build"
+CMAKE_BINARY_DIR = /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Rasterizer.dir/depend.make
@@ -72,44 +72,44 @@ include CMakeFiles/Rasterizer.dir/flags.make
 CMakeFiles/Rasterizer.dir/main.cpp.o: CMakeFiles/Rasterizer.dir/flags.make
 CMakeFiles/Rasterizer.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Rasterizer.dir/main.cpp.o: CMakeFiles/Rasterizer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Rasterizer.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Rasterizer.dir/main.cpp.o -MF CMakeFiles/Rasterizer.dir/main.cpp.o.d -o CMakeFiles/Rasterizer.dir/main.cpp.o -c "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Rasterizer.dir/main.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Rasterizer.dir/main.cpp.o -MF CMakeFiles/Rasterizer.dir/main.cpp.o.d -o CMakeFiles/Rasterizer.dir/main.cpp.o -c /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/main.cpp
 
 CMakeFiles/Rasterizer.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Rasterizer.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/main.cpp" > CMakeFiles/Rasterizer.dir/main.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/main.cpp > CMakeFiles/Rasterizer.dir/main.cpp.i
 
 CMakeFiles/Rasterizer.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Rasterizer.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/main.cpp" -o CMakeFiles/Rasterizer.dir/main.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/main.cpp -o CMakeFiles/Rasterizer.dir/main.cpp.s
 
 CMakeFiles/Rasterizer.dir/rasterizer.cpp.o: CMakeFiles/Rasterizer.dir/flags.make
 CMakeFiles/Rasterizer.dir/rasterizer.cpp.o: ../rasterizer.cpp
 CMakeFiles/Rasterizer.dir/rasterizer.cpp.o: CMakeFiles/Rasterizer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Rasterizer.dir/rasterizer.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Rasterizer.dir/rasterizer.cpp.o -MF CMakeFiles/Rasterizer.dir/rasterizer.cpp.o.d -o CMakeFiles/Rasterizer.dir/rasterizer.cpp.o -c "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/rasterizer.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Rasterizer.dir/rasterizer.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Rasterizer.dir/rasterizer.cpp.o -MF CMakeFiles/Rasterizer.dir/rasterizer.cpp.o.d -o CMakeFiles/Rasterizer.dir/rasterizer.cpp.o -c /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/rasterizer.cpp
 
 CMakeFiles/Rasterizer.dir/rasterizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Rasterizer.dir/rasterizer.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/rasterizer.cpp" > CMakeFiles/Rasterizer.dir/rasterizer.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/rasterizer.cpp > CMakeFiles/Rasterizer.dir/rasterizer.cpp.i
 
 CMakeFiles/Rasterizer.dir/rasterizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Rasterizer.dir/rasterizer.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/rasterizer.cpp" -o CMakeFiles/Rasterizer.dir/rasterizer.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/rasterizer.cpp -o CMakeFiles/Rasterizer.dir/rasterizer.cpp.s
 
 CMakeFiles/Rasterizer.dir/Triangle.cpp.o: CMakeFiles/Rasterizer.dir/flags.make
 CMakeFiles/Rasterizer.dir/Triangle.cpp.o: ../Triangle.cpp
 CMakeFiles/Rasterizer.dir/Triangle.cpp.o: CMakeFiles/Rasterizer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Rasterizer.dir/Triangle.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Rasterizer.dir/Triangle.cpp.o -MF CMakeFiles/Rasterizer.dir/Triangle.cpp.o.d -o CMakeFiles/Rasterizer.dir/Triangle.cpp.o -c "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/Triangle.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Rasterizer.dir/Triangle.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Rasterizer.dir/Triangle.cpp.o -MF CMakeFiles/Rasterizer.dir/Triangle.cpp.o.d -o CMakeFiles/Rasterizer.dir/Triangle.cpp.o -c /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/Triangle.cpp
 
 CMakeFiles/Rasterizer.dir/Triangle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Rasterizer.dir/Triangle.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/Triangle.cpp" > CMakeFiles/Rasterizer.dir/Triangle.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/Triangle.cpp > CMakeFiles/Rasterizer.dir/Triangle.cpp.i
 
 CMakeFiles/Rasterizer.dir/Triangle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Rasterizer.dir/Triangle.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/Triangle.cpp" -o CMakeFiles/Rasterizer.dir/Triangle.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/Triangle.cpp -o CMakeFiles/Rasterizer.dir/Triangle.cpp.s
 
 # Object files for target Rasterizer
 Rasterizer_OBJECTS = \
@@ -144,7 +144,7 @@ Rasterizer: /usr/local/opt/opencv@2/lib/libopencv_imgproc.2.4.13.dylib
 Rasterizer: /usr/local/opt/opencv@2/lib/libopencv_flann.2.4.13.dylib
 Rasterizer: /usr/local/opt/opencv@2/lib/libopencv_core.2.4.13.dylib
 Rasterizer: CMakeFiles/Rasterizer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Rasterizer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Rasterizer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Rasterizer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -156,6 +156,6 @@ CMakeFiles/Rasterizer.dir/clean:
 .PHONY : CMakeFiles/Rasterizer.dir/clean
 
 CMakeFiles/Rasterizer.dir/depend:
-	cd "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code" "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code" "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build" "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build" "/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/code/build/CMakeFiles/Rasterizer.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/build/CMakeFiles/Rasterizer.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Rasterizer.dir/depend
 

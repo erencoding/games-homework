@@ -1,3 +1,0 @@
-/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/代码框架/CMakeFiles/rebuild_cache.dir
-/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/代码框架/CMakeFiles/edit_cache.dir
-/Users/user/Documents/project/GAMES101_Homework_S2021 (1)/Homework2/代码框架/CMakeFiles/Rasterizer.dir

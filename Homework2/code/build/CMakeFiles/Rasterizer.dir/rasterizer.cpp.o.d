@@ -1,5 +1,5 @@
 CMakeFiles/Rasterizer.dir/rasterizer.cpp.o: \
-  /Users/user/Documents/project/GAMES101_Homework_S2021\ (1)/Homework2/code/rasterizer.cpp \
+  /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/rasterizer.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/algorithm \
   /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/include/pthread.h \
@@ -161,7 +161,7 @@ CMakeFiles/Rasterizer.dir/rasterizer.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/vector \
   /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/__bit_reference \
   /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/__split_buffer \
-  /Users/user/Documents/project/GAMES101_Homework_S2021\ (1)/Homework2/code/rasterizer.hpp \
+  /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/rasterizer.hpp \
   /usr/local/include/eigen3/Eigen/Eigen \
   /usr/local/include/eigen3/Eigen/Dense \
   /usr/local/include/eigen3/Eigen/Core \
@@ -506,8 +506,8 @@ CMakeFiles/Rasterizer.dir/rasterizer.cpp.o: \
   /usr/local/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
   /usr/local/include/eigen3/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/usr/include/c++/v1/list \
-  /Users/user/Documents/project/GAMES101_Homework_S2021\ (1)/Homework2/code/global.hpp \
-  /Users/user/Documents/project/GAMES101_Homework_S2021\ (1)/Homework2/code/Triangle.hpp \
+  /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/global.hpp \
+  /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/Triangle.hpp \
   /usr/local/Cellar/opencv@2/2.4.13.7_12/include/opencv2/opencv.hpp \
   /usr/local/Cellar/opencv@2/2.4.13.7_12/include/opencv2/opencv_modules.hpp \
   /usr/local/Cellar/opencv@2/2.4.13.7_12/include/opencv2/core/core_c.h \

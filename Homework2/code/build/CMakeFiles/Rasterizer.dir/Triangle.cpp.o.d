@@ -1,6 +1,6 @@
 CMakeFiles/Rasterizer.dir/Triangle.cpp.o: \
-  /Users/user/Documents/project/GAMES101_Homework_S2021\ (1)/Homework2/code/Triangle.cpp \
-  /Users/user/Documents/project/GAMES101_Homework_S2021\ (1)/Homework2/code/Triangle.hpp \
+  /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/Triangle.cpp \
+  /Users/user/Documents/project/GAMES101_Homework_S2021/Homework2/code/Triangle.hpp \
   /usr/local/include/eigen3/Eigen/Eigen \
   /usr/local/include/eigen3/Eigen/Dense \
   /usr/local/include/eigen3/Eigen/Core \
