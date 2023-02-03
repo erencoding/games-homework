@@ -47,10 +47,41 @@ Eigen::Matrix4f get_model_matrix(float angle)
     return translate * rotation * scale;
 }
 
-Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear, float zFar)
+Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
+                                      float zNear, float zFar)
 {
-    // TODO: Use the same projection matrix from the previous assignments
+    // Students will implement this function
+    Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
+    Eigen::Matrix4f Mortho1 = Eigen::Matrix4f::Identity();
+    Eigen::Matrix4f Mortho2 = Eigen::Matrix4f::Identity();
+    Eigen::Matrix4f Mortho = Eigen::Matrix4f::Identity();
+    Eigen::Matrix4f Mpersp_ortho = Eigen::Matrix4f::Identity();
 
+    //  Calculate t r l b
+    float fov = eye_fov * MY_PI / 180;
+    float t =  -tan(fov / 2) * abs(zNear);
+    float r = aspect_ratio * t;
+    float l = -r;
+    float b = -t;
+
+    Mortho1 << 2 / (r - l), 0, 0, 0,
+                    0, 2 / (t - b), 0, 0,
+                        0, 0, 2 / (zNear - zFar), 0,
+                        0, 0, 0, 1;
+    Mortho2 << 1, 0, 0, -(r + l) / 2,
+                        0, 1, 0, -(t + b) / 2,
+                        0, 0, 1, -(zNear + zFar) / 2,
+                        0, 0, 0, 1;
+    Mortho = Mortho1 * Mortho2;
+
+    Mpersp_ortho << zNear, 0, 0, 0,
+                                0, zNear, 0, 0,
+                                0, 0, zNear + zFar, -zNear * zFar,
+                                0, 0, 1, 0;
+
+    projection = Mortho * Mpersp_ortho * projection;
+
+    return projection;
 }
 
 Eigen::Vector3f vertex_shader(const vertex_shader_payload& payload)

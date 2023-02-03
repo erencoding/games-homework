@@ -280,7 +280,57 @@ void rst::rasterizer::rasterize_triangle(const Triangle& t, const std::array<Eig
     // Use: Instead of passing the triangle's color directly to the frame buffer, pass the color to the shaders first to get the final color;
     // Use: auto pixel_color = fragment_shader(payload);
 
- 
+    auto v = t.toVector4();
+    int min_x = INT_MAX;
+    int max_x = INT_MIN;
+    int min_y = INT_MAX;
+    int max_y = INT_MIN;
+    for (auto point : v) //获取包围盒边界
+    {
+        if (point[0] < min_x) min_x = point[0];
+        if (point[0] > max_x) max_x = point[0];
+        if (point[1] < min_y) min_y = point[1];
+        if (point[1] > max_y) max_y = point[1];
+    } 
+    for (int y = min_y; y <= max_y; y++) 
+    {
+        for (int x = min_x; x <= max_x; x++)
+        {
+            float fineness = 0; //创建一个纯度值
+            if (insideTriangle((float)x + 0.25, (float)y + 0.25, t.v)) fineness += 0.25; //改为判断四个采样块的中心点在不在三角形内
+            if (insideTriangle((float)x + 0.25, (float)y + 0.75, t.v)) fineness += 0.25;
+            if (insideTriangle((float)x + 0.75, (float)y + 0.25, t.v)) fineness += 0.25;
+            if (insideTriangle((float)x + 0.75, (float)y + 0.75, t.v)) fineness += 0.25;
+            if (fineness != 0) 
+            {
+                auto abg = computeBarycentric2D((float)x + 0.5, (float)y + 0.5, t.v);
+                float alpha = std::get<0>(abg);
+                float beta  = std::get<1>(abg);
+                float gamma = std::get<2>(abg);
+                float w_reciprocal = 1.0/(alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+                float z_interpolated = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+                z_interpolated *= w_reciprocal;
+
+                // float alpha, float beta, float gamma, const Eigen::Vector3f& vert1, const Eigen::Vector3f& vert2, const Eigen::Vector3f& vert3, float weight
+                auto interpolated_color = interpolate(alpha, beta, gamma, t.color[0], t.color[1], t.color[2], 1.0);
+                auto interpolated_normal = interpolate(alpha, beta, gamma, t.normal[0], t.normal[1], t.normal[2], 1.0);
+                auto interpolated_texcoords = interpolate(alpha, beta, gamma, t.tex_coords[0], t.tex_coords[1], t.tex_coords[2], 1.0);
+                auto interpolated_shadingcoords = interpolate(alpha, beta, gamma, view_pos[0], view_pos[1], view_pos[2], 1.0);
+
+                fragment_shader_payload payload(interpolated_color, interpolated_normal.normalized(), interpolated_texcoords, texture ? &*texture : nullptr);
+                payload.view_pos = interpolated_shadingcoords;
+                auto pixel_color = fragment_shader(payload);
+
+                //上面均为作业已经给出的插值方法直接用即可
+                if (z_interpolated < depth_buf[get_index(x, y)]) //判断当前z值是否小于原来z表此位置的z值
+                {
+                    Eigen::Vector3f p = { (float)x,(float)y, z_interpolated }; //当前坐标
+                    set_pixel(p, pixel_color);
+                    depth_buf[get_index(x, y)] = z_interpolated; //更新z值
+                }
+            }
+        }
+    }
 }
 
 void rst::rasterizer::set_model(const Eigen::Matrix4f& m)

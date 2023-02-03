@@ -1,3 +1,7 @@
 {
-  "cmake.sourceDirectory": "${workspaceFolder}/Homework1/Assignment1"
+  "cmake.sourceDirectory": "${workspaceFolder}/Homework1/Assignment1",
+  "files.associations": {
+    "array": "cpp",
+    "cmath": "cpp"
+  }
 }
