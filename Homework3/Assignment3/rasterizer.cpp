@@ -257,44 +257,100 @@ static Eigen::Vector2f interpolate(float alpha, float beta, float gamma, const E
 }
 
 //Screen space rasterization
-void rst::rasterizer::rasterize_triangle(const Triangle& t, const std::array<Eigen::Vector3f, 3>& view_pos) 
+//Screen space rasterization
+void rst::rasterizer::rasterize_triangle(const Triangle& t, const std::array<Eigen::Vector3f, 3>& view_pos)
 {
-    auto v = t.toVector4();
-    Vector3f color;
-    float alpha, beta, gamma, lmin=INT_MAX, rmax=INT_MIN, tmax=INT_MIN, bmin=INT_MAX, id;
-    for(auto &k:v){//找到bounding box的边界坐标
-        lmin = int(std::min(lmin,k.x()));
-        rmax = std::max(rmax,k.x());rmax = rmax == int(rmax) ? int(rmax)-1 : rmax;
-        tmax = std::max(tmax,k.y());tmax = tmax == int(tmax) ? int(tmax)-1 : tmax;
-        bmin = int(std::min(bmin,k.y()));
-    }
-    for(float i = lmin; i <= rmax; i++){
-        for(float j = bmin; j <= tmax; j++){//遍历bounding box像素
-            id = get_index(i,j);
-            if(insideTriangle(i+0.5, j+0.5, t.v)){//如果像素在三角形内
-                // If so, use the following code to get the interpolated z value.
-                std::tie(alpha, beta, gamma) = computeBarycentric2D(i+0.5, j+0.5, t.v);
-                float w_reciprocal = 1.0/(alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
-                float z_interpolated = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
-                z_interpolated *= w_reciprocal;
-                    
-                if (-z_interpolated < depth_buf[id]){//如果该像素的深度更小，更新像素深度、颜色表
-                    auto interpolated_color = interpolate(alpha, beta, gamma, t.color[0], t.color[1], t.color[2], 1);//颜色插值
-                    auto interpolated_normal = interpolate(alpha, beta, gamma, t.normal[0], t.normal[1], t.normal[2], 1).normalized();//法向量插值
-                    auto interpolated_texcoords = interpolate(alpha, beta, gamma, t.tex_coords[0], t.tex_coords[1], t.tex_coords[2], 1);//纹理坐标插值
-                    auto interpolated_shadingcoords = interpolate(alpha, beta, gamma, view_pos[0], view_pos[1], view_pos[2], 1);//着色点坐标插值
-                    fragment_shader_payload payload(interpolated_color, interpolated_normal.normalized(), interpolated_texcoords, texture ? &*texture : nullptr);//将插值属性传入fragment_shader_payload
-                    payload.view_pos = interpolated_shadingcoords;//传入原顶点坐标
-                    depth_buf[id] = -z_interpolated;    
-                    frame_buf[id] = fragment_shader(payload);//使用shader计算颜色
-                    // TODO : set the current pixel (use the set_pixel function) to the color of the triangle (use getColor function) if it should be painted.
-                    set_pixel({i,j}, frame_buf[id]);
+    // TODO: From your HW3, get the triangle rasterization code.
+    // TODO: Inside your rasterization loop:
+    //    * v[i].w() is the vertex view space depth value z.
+    //    * Z is interpolated view space depth for the current pixel
+    //    * zp is depth between zNear and zFar, used for z-buffer
+ 
+    // float Z = 1.0 / (alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+    // float zp = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+    // zp *= Z;
+ 
+    // TODO: Interpolate the attributes:
+    // auto interpolated_color
+    // auto interpolated_normal
+    // auto interpolated_texcoords
+    // auto interpolated_shadingcoords
+ 
+    // Use: fragment_shader_payload payload( interpolated_color, interpolated_normal.normalized(), interpolated_texcoords, texture ? &*texture : nullptr);
+    // Use: payload.view_pos = interpolated_shadingcoords;
+    // Use: Instead of passing the triangle's color directly to the frame buffer, pass the color to the shaders first to get the final color;
+    // Use: auto pixel_color = fragment_shader(payload);
+    auto v = t.toVector4();//把三角形面片的顶点坐标装入容器
+ 
+    //记录这三个顶点占据的二维平面的取值范围，以得到接下来需要历遍的边界
+    float f_x_min = std::min(v[0][0], std::min(v[1][0], v[2][0]));
+    float f_y_min = std::min(v[0][1], std::min(v[1][1], v[2][1]));
+ 
+    float f_x_max = std::max(v[0][0], std::max(v[1][0], v[2][0]));
+    float f_y_max = std::max(v[0][1], std::max(v[1][1], v[2][1]));
+ 
+    //对决定取值范围的大小数据进行取整，方便进行光栅化历遍，floor()是在数轴上向0取整，ceil()是向0之外取整
+    int i_x_min = std::floor(f_x_min);
+    int i_y_min = std::floor(f_y_min);
+ 
+    int i_x_max = std::ceil(f_x_max);
+    int i_y_max = std::ceil(f_y_max);
+ 
+    //开始历遍各个像素点,以x和y表示像素点的坐标
+    for (int x = i_x_min; x < i_x_max; x++)
+    {
+        for (int y = i_y_min; y < i_y_max; y++)
+        {
+            if (insideTriangle(x, y, t.v))//如果该像素点在三角形内，那么就需要光栅化到屏幕上
+            {
+                auto [alpha, beta, gamma] = computeBarycentric2D(x + 0.5, y + 0.5, t.v);//根据三角形重心坐标计算权重alpha, beta, gamma
+ 
+                //根据权重计算该像素点的空间深度zp
+                float Z = 1.0 / (alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+                float zp = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+                zp *= Z;//这个才是我们要拿到的最终结果——空间深度zp
+ 
+ 
+ 
+                    //这里我补充介绍一下，深度缓冲算法（Z - buffer）不然看不懂。
+ 
+                    //因为在透视投影中，可以得到每个像素的深度信息z，
+ 
+                    //深度缓冲的算法过程如下：
+ 
+                    //1.首先分配一个数组buffer，数组的大小为像素的个数，数据中的每个数据都表示深度，初始深度值为无穷大
+ 
+                    //2. 随后遍历每个三角形上的每个像素点[x, y]，如果该像素点的深度值z < zbuffer[x, y]中的值，
+                        //则更新zbuffer[x, y]值为该点深度值z，并更新该像素点[x, y]的颜色为该三角形上像素点上的颜色。
+ 
+ 
+                if (zp < depth_buf[get_index(x, y)])//之前历遍得到的那些像素点的深度值都存在数组depth_buf里面了，该数组的大小等于视口像素点的数量，
+                                                                       //如果该像素点的深度值小于之前该位置像素点，那么就更新它。近的质点就排到了前面显示
+                                                                       //
+                {
+                    auto interpolated_color = interpolate(alpha, beta, gamma, t.color[0], t.color[1], t.color[2], 1);//根据权重对颜色插值
+                    auto interpolated_normal = interpolate(alpha, beta, gamma, t.normal[0], t.normal[1], t.normal[2], 1).normalized();//根据权重对法向量进行插值
+                    auto interpolated_texcoords = interpolate(alpha, beta, gamma, t.tex_coords[0], t.tex_coords[1], t.tex_coords[2], 1);//对纹理坐标插值
+ 
+ 
+                    //view_pos[]即view_position是指该三角形顶点在摄像机空间中的坐标，插值后可以得到该三角形内个质点在摄像机空间中的坐标
+                    auto interpolated_shadingcoords = interpolate(alpha, beta, gamma, view_pos[0], view_pos[1], view_pos[2], 1);//对阴影坐标插值
+ 
+                    //生成fragment_shader_payload类的实例payload，用来传递插值结果
+                    //把插值结果传到payload里，进行渲染
+                    fragment_shader_payload payload(interpolated_color, interpolated_normal, interpolated_texcoords, texture ? &*texture : nullptr);//这里暂时缺省纹理信息
+                    payload.view_pos = interpolated_shadingcoords;
+                    auto pixel_color = fragment_shader(payload);
+ 
+                    depth_buf[get_index(x, y)] = zp;//更新深度数组，或者说深度图
+                    set_pixel(Eigen::Vector2i(x, y), pixel_color);//更新像素
+ 
                 }
+ 
             }
         }
-    } 
+    }
 }
-
 
 void rst::rasterizer::set_model(const Eigen::Matrix4f& m)
 {
