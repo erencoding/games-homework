@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/usr/local/Cellar/opencv@2/2.4.13.7_12/include/opencv -I/usr/local/Cellar/opencv@2/2.4.13.7_12/include -I/usr/local/include -I/Users/user/Documents/project/GAMES101_Homework_S2021/Homework3/Assignment3/./include
 
-CXX_FLAGS =  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++17
+CXX_FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++17
 
