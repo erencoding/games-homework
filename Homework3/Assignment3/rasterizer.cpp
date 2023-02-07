@@ -334,17 +334,16 @@ void rst::rasterizer::rasterize_triangle(const Triangle& t, const std::array<Eig
  
  
                     //view_pos[]即view_position是指该三角形顶点在摄像机空间中的坐标，插值后可以得到该三角形内个质点在摄像机空间中的坐标
-                    auto interpolated_shadingcoords = interpolate(alpha, beta, gamma, view_pos[0], view_pos[1], view_pos[2], 1);//对阴影坐标插值
+                    auto interpolated_shadingcoords = interpolate(alpha, beta, gamma, view_pos[0], view_pos[1], view_pos[2], 1);// 对阴影坐标插值（这个是什么？）
  
                     //生成fragment_shader_payload类的实例payload，用来传递插值结果
                     //把插值结果传到payload里，进行渲染
                     fragment_shader_payload payload(interpolated_color, interpolated_normal, interpolated_texcoords, texture ? &*texture : nullptr);//这里暂时缺省纹理信息
                     payload.view_pos = interpolated_shadingcoords;
-                    auto pixel_color = fragment_shader(payload);
+                    auto pixel_color = fragment_shader(payload); // 着色
  
-                    depth_buf[get_index(x, y)] = zp;//更新深度数组，或者说深度图
-                    set_pixel(Eigen::Vector2i(x, y), pixel_color);//更新像素
- 
+                    depth_buf[get_index(x, y)] = zp;// 更新深度数组，或者说深度图
+                    set_pixel(Eigen::Vector2i(x, y), pixel_color); // 更新像素
                 }
  
             }
